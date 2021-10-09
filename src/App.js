@@ -8,6 +8,7 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
+        <br />
         <Switch>
             <Route path="/ventas" component={Ventas} />
         </Switch>
