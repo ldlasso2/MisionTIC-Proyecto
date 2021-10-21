@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { Table, TableHead, TableCell, TableRow, TableBody, Button, makeStyles } from '@material-ui/core';
 import { getProducts, deleteProduct } from '../services/ProductService';
 import { Link } from 'react-router-dom';
 //import { getCurrentUser } from '../services/AuthService';
