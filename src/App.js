@@ -2,27 +2,41 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Ventanas from './pages/Ventanas.js';
-
+import { getCurrentUser } from './services/AuthService';
 import React,{useEffect, useState} from 'react'
+import Login from './components/Login';
+import Home from './components/Home';
 
 function App() {
+  const [user, setUser] = useState([])
+  useEffect(() => {
+    setUser(getCurrentUser());
+  }, [])
   return (
     <div className="App">
       <Router>
         <Navbar />
         <br />
         <Switch>
+          <Route path="/login" component={Login}/>
+          {user &&  
             <Route path="/ventas">
               <Ventanas objeto="ventas" />
-            </Route>
+            </Route>}
+          {user && 
             <Route exact path="/productos"> 
               <Ventanas objeto="productos" />
-            </Route>
-            
+            </Route>}
+          {user && 
             <Route path="/usuarios">
               <Ventanas objeto="usuarios" />
             </Route>
-            {/* <Route path="/usuarios" component={Usuarios} /> */}
+          }
+
+          {!user && <Home/>
+          
+          }
+
         </Switch>
       </Router>
       

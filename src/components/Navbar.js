@@ -1,9 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import {Link, NavLink} from 'react-router-dom'
+import { getCurrentUser } from '../services/AuthService';
+
+const initialValue = {
+  email: ""
+}
 
 function Navbar() {
+  const [user, setUser] = useState(initialValue);
+
+
+  useEffect(() => {
+      setUser(getCurrentUser());
+  }, []);
+
+  const logout = () => {
+      localStorage.clear();
+      window.location = "/";
+  }
   return (
-    <div className="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <div>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
@@ -18,6 +34,18 @@ function Navbar() {
             </li>
           </ul>
         </div>
+        <form class="form-inline ">
+        {!user && 
+          <Link to="/login" className="link">
+          <button className="btn btn-outline-info" type="submit">Iniciar sesión</button>
+          </Link>      
+        
+        }
+        {user &&
+
+          <button className="btn btn-outline-info" onClick={() => logout()} type="submit">Cerrar sesión</button>
+        }
+        </form>
       </nav>
       
     </div>
