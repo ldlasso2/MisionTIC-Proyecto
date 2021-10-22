@@ -31,18 +31,17 @@ function ProductForm() {
     }
 
   return (
-  <div class="card">
-
+    <div className="card mr-5">
       <form>
         <br/>
-        <div class="form-group row">
+        <div class="form-group row mr-0">
           <label className="col-sm-2 col-form-label">Descripción</label>
-          <div className="col-sm-10">
+          <div className="col-sm-10 ">
             <input className="form-control" onChange={(e) => onValueChange(e)} name="descripcion" value={descripcion} id="my-input"  />
           </div>
         </div>
         <br/>
-        <div class="form-group row">
+        <div class="form-group row mr-0">
           <label className="col-sm-2 col-form-label">Valor</label>
           <div className="col-sm-10">
             <input className="form-control" onChange={(e) => onValueChange(e)} name="valor" value={valor} id="my-input"  />
