@@ -25,7 +25,7 @@ function ProductTable() {
       }
     }
     return (
-      <div>
+      <div class="card mr-4">
         <table className="table">
           <thead>
             <tr>
@@ -52,8 +52,8 @@ function ProductTable() {
                                     &&
 
                                     (<td>
-                                      <Link className = "btn btn-success" to = {`/productos/editar/${product._id}`}>Editar </Link> 
-                                      <button className="btn-p-10 btn-success" onClick={() => deleteProductData(product._id)} >Eliminar</button>
+                                      <Link className = "btn btn-success mr-2" to = {`/productos/editar/${product._id}`}>Editar </Link> 
+                                      <button className="btn btn-success" onClick={() => deleteProductData(product._id)} >Eliminar</button>
                                     </td>)
                                 }
                   </tr>
