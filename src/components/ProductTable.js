@@ -26,7 +26,6 @@ function ProductTable() {
     }
     return (
       <div>
-        hola
         <table className="table">
           <thead>
             <tr>
@@ -48,13 +47,13 @@ function ProductTable() {
                     <td>{product.descripcion}</td>
                     <td>{product.valor}</td>
                     <td>{product.estado ? "Disponible":"Agotado"}</td>
-                   
+                    
                     {user
                                     &&
 
                                     (<td>
-                                        <button className="btn btn-success" component={Link} to={`productos/editar/${product._id}`} color="info">Editar</button>
-                                        <button className="btn btn-success" onClick={() => deleteProductData(product._id)} >Eliminar</button>
+                                      <Link className = "btn btn-success" to = {`/productos/editar/${product._id}`}>Editar </Link> 
+                                      <button className="btn-p-10 btn-success" onClick={() => deleteProductData(product._id)} >Eliminar</button>
                                     </td>)
                                 }
                   </tr>
