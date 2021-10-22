@@ -7,6 +7,9 @@ import Search from '../components/Search';
 import ProductTable from '../components/ProductTable';
 import ProductForm from '../components/ProductForm'
 import EditProduct from '../components/ProductEdit'
+import SaleTable from '../components/SaleTable'
+import SaleForm from '../components/SaleForm';
+import SaleEdit from '../components/SaleEdit';
 function Ventanas(props) {
   return (
     <div className="ventanas-container">
@@ -18,14 +21,15 @@ function Ventanas(props) {
           <div class = "col-8">
             <Switch>
             <Route exact path="/productos/editar/:id" component={EditProduct} />
+            <Route exact path="/ventas/editar/:id" component={SaleEdit} />
               <Route path = {"/"+ props.objeto + "/buscar"}>
                 <Search title = {"Busqueda" + props.objeto} />
               </Route>
               <Route path= {"/"+ props.objeto + "/registrar"}>
-                {(props.objeto === "ventas" && <Form/>) || (props.objeto === "productos" && <ProductForm/>) || (props.objeto === "usuarios" && <Table />)}
+                {(props.objeto === "ventas" && <SaleForm/>) || (props.objeto === "productos" && <ProductForm/>) || (props.objeto === "usuarios" && <Table />)}
               </Route>
               <Route path= {"/"+ props.objeto}>
-                <ProductTable/>
+                {(props.objeto === "ventas" && <SaleTable/>) || (props.objeto === "productos" && <ProductTable/>) || (props.objeto === "usuarios" && <Table />)}
               </Route>
               
             </Switch>

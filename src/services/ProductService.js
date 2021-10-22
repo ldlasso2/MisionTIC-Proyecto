@@ -25,5 +25,5 @@ export const deleteProduct = async (id) => {
 
 export const editProduct = async (product) => {
     //return await axios.put(`${productsUrl}/${product._id}`, product, { headers: authHeaders });
-    return await axios.put(`${productsUrl}/${product._id}`, product);
+    return await axios.put(`${productsUrl}/editar/${product._id}`, product);
 }
