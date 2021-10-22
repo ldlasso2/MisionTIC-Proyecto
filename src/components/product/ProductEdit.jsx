@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { editProduct, getProduct } from '../services/ProductService';
+import { editProduct, getProduct } from '../../services/ProductService';
 import { useHistory, useParams } from 'react-router-dom';
 //import { verifyToken } from '../services/AuthService'
 

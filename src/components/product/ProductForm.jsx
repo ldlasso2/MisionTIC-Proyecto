@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addProduct } from '../services/ProductService';
+import { addProduct } from '../../services/ProductService';
 import { useHistory } from 'react-router-dom';
 //import { getCurrentUser } from '../services/AuthService';
 //import { verifyToken } from '../services/AuthService';
@@ -67,7 +67,7 @@ function ProductForm() {
             </div>
           </fieldset>
 
-        <div class="row">
+        <div class="row  mb-2">
           <div class="col">
             <button type="button" class="btn btn-primary" onClick={(e) => addProductData()}>Guardar</button>
           </div>

@@ -36,10 +36,15 @@ function Navbar() {
         </div>
         <form class="form-inline ">
         {!user && 
+          <Link to="/registrarse" className="link">
+          <button className="btn btn-outline-info mr-3" type="submit">Registrarse</button>
+          </Link> }
+
+        {!user && 
           <Link to="/login" className="link">
           <button className="btn btn-outline-info" type="submit">Iniciar sesión</button>
-          </Link>      
-        
+          </Link> 
+          
         }
         {user &&
 

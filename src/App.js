@@ -6,6 +6,7 @@ import { getCurrentUser } from './services/AuthService';
 import React,{useEffect, useState} from 'react'
 import Login from './components/Login';
 import Home from './components/Home';
+import Signup from './components/Signup';
 
 function App() {
   const [user, setUser] = useState([])
@@ -18,6 +19,7 @@ function App() {
         <Navbar />
         <br />
         <Switch>
+          <Route path="/registrarse" component={Signup}/>
           <Route path="/login" component={Login}/>
           {user &&  
             <Route path="/ventas">

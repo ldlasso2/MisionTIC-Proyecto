@@ -1,15 +1,14 @@
 import React from 'react'
-import Form from '../components/Form'
 import Menu from '../components/Menu'
 import Table from '../components/Table'
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Search from '../components/Search';
-import ProductTable from '../components/ProductTable';
-import ProductForm from '../components/ProductForm'
-import EditProduct from '../components/ProductEdit'
-import SaleTable from '../components/SaleTable'
-import SaleForm from '../components/SaleForm';
-import SaleEdit from '../components/SaleEdit';
+import ProductTable from '../components/product/ProductTable';
+import ProductForm from '../components/product/ProductForm'
+import EditProduct from '../components/product/ProductEdit'
+import SaleTable from '../components/sales/SaleTable'
+import SaleForm from '../components/sales/SaleForm';
+import SaleEdit from '../components/sales/SaleEdit';
 function Ventanas(props) {
   return (
     <div className="ventanas-container">

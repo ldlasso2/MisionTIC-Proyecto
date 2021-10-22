@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { editSale, getSale } from '../services/SaleService';
+import { editSale, getSale } from '../../services/SaleService';
 import { useHistory, useParams} from 'react-router-dom';
 
 const initialValue = {
