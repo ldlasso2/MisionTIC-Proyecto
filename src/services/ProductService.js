@@ -1,12 +1,12 @@
 import axios from "axios";
-//import { authHeaders } from "./AuthService";
+import { authHeaders } from "./AuthService";
 
 //const productsUrl = "https://peaceful-peak-03211.herokuapp.com/productos"; //prod
 const productsUrl = "http://localhost:3002/productos"; //dllo
 
 export const getProduct = async (id) => {
     //return await axios.get(`${productsUrl}/${id}`, { headers: authHeaders });
-    return await axios.get(`${productsUrl}/${id}`);
+    return await axios.get(`${productsUrl}/${id}`, { headers: authHeaders });
 }
 
 export const getProducts = async () => {
@@ -14,16 +14,16 @@ export const getProducts = async () => {
 }
 
 export const addProduct = async (product) => {
-    return await axios.post(`${productsUrl}/`, product);
+    return await axios.post(`${productsUrl}/`, product, { headers: authHeaders });
     //return await axios.post(`${productsUrl}/`, product, { headers: authHeaders });
 }
 
 export const deleteProduct = async (id) => {
     //return await axios.delete(`${productsUrl}/${id}`, { headers: authHeaders });
-    return await axios.delete(`${productsUrl}/${id}`);
+    return await axios.delete(`${productsUrl}/${id}`, { headers: authHeaders });
 }
 
 export const editProduct = async (product) => {
     //return await axios.put(`${productsUrl}/${product._id}`, product, { headers: authHeaders });
-    return await axios.put(`${productsUrl}/editar/${product._id}`, product);
+    return await axios.put(`${productsUrl}/editar/${product._id}`, product, { headers: authHeaders });
 }
