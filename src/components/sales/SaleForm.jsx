@@ -12,7 +12,6 @@ const initialValue = {
 }
 const initialValueProduct = {
   _id: '',
-  valor: 0,
   cantidad: 0
 }
 
@@ -110,17 +109,24 @@ function SaleForm() {
             <tr>
               <th>
                 Id {creatingProductState === 'desplegado' &&
-                                      (
-                                          <>
-                                              :<input
-                                                  onChange={(e) => onValueNewProductChange(e)}
-                                                  value={newProduct._id}
-                                                  type="text" 
-                                                  name="_id"/>
-                                          </>
-                                      )
-                                  }
+                    (
+                        <>
+                            :<select
+                                name="_id"
+                                value={newProduct._id}
+                                label="Id"
+                                onChange={(e) => onValueNewProductChange(e)}>
+                                {
+                                    products.map(product => (
+                                        <option value={product._id}>{product._id}</option>
+                                    ))
+                                }
+                              </select>
+                        </>
+                    )
+                }
               </th>
+
               <th>
                 Cantidad {creatingProductState === 'desplegado' &&
                                       (
@@ -135,6 +141,11 @@ function SaleForm() {
                                   }
               </th>
               <th>
+                Descripción {creatingProductState === 'desplegado' &&
+                                    (<>: {newProduct.descripcion}</>)
+                                }
+              </th>
+              <th>
               { creatingProductState === 'minimizado' && (
                                 <button type="button" class="btn btn-success" onClick={() => changeStateCreateProductForm('desplegado') } >Agregar</button>
                             )}
@@ -145,17 +156,18 @@ function SaleForm() {
             </tr>
         </thead>
         <tbody>
-          {
-                              sale.productos.map(product => (
-                                  <tr key={product._id}>
-                                      <td>{product._id}</td>
-                                      <td>{product.cantidad}</td>
-                                      <td>
-                                          <button type="button" class="btn btn-danger" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
-                                      </td>
-                                  </tr>
-                              ))
-                          }
+        {
+          sale.productos.map(product => (
+              <tr key={product._id}>
+                  <td>{product._id}</td>
+                  <td>{product.cantidad}</td>
+                  <td>{product.descripcion}</td>
+                  <td>
+                      <button variant="contained" class="btn btn-warning" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
+                  </td>
+              </tr>
+          ))
+        }
         </tbody>
       </table>
         
