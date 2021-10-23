@@ -9,6 +9,7 @@ import EditProduct from '../components/product/ProductEdit'
 import SaleTable from '../components/sales/SaleTable'
 import SaleForm from '../components/sales/SaleForm';
 import SaleEdit from '../components/sales/SaleEdit';
+import SalesSearch from '../components/sales/SalesSearch';
 function Ventanas(props) {
   return (
     <div className="ventanas-container">
@@ -22,7 +23,7 @@ function Ventanas(props) {
             <Route exact path="/productos/editar/:id" component={EditProduct} />
             <Route exact path="/ventas/editar/:id" component={SaleEdit} />
               <Route path = {"/"+ props.objeto + "/buscar"}>
-                <Search title = {"Busqueda" + props.objeto} />
+              {(props.objeto === "ventas" && <Search/>) || (props.objeto === "productos" && <ProductForm/>) || (props.objeto === "usuarios" && <Table />)}
               </Route>
               <Route path= {"/"+ props.objeto + "/registrar"}>
                 {(props.objeto === "ventas" && <SaleForm/>) || (props.objeto === "productos" && <ProductForm/>) || (props.objeto === "usuarios" && <Table />)}

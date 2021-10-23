@@ -53,7 +53,7 @@ function SaleTable() {
 
                                     (<td>
                                       <Link className = "btn btn-success mr-2" to = {`/ventas/editar/${sale._id}`}>Editar </Link> 
-                                      <button className="btn btn-success" onClick={() => deleteProductData(sale._id)} >Eliminar</button>
+                                      <button className="btn btn-warning" onClick={() => deleteProductData(sale._id)} >Eliminar</button>
                                     </td>)
                                 }
                   </tr>

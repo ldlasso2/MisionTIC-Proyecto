@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addSale } from '../../services/SaleService';
 import { useHistory } from 'react-router-dom';
+import { getProducts } from '../../services/ProductService';
 
 const initialValue = {
   valor: '',
@@ -17,42 +18,65 @@ const initialValueProduct = {
 
 function SaleForm() {
 
-  const [sale,setSale] = useState(initialValue);
-  const {valor,nombreCliente,idCliente,idVendedor,productos} = sale;
+  const history = useHistory();
+  const [user, setUser] = useState(null)
 
+  useEffect(() => {
+      loadProductsData();
+  }, [])
+
+  const [products, setProducts] = useState([]);
+  const [sale, setSale] = useState(initialValue);
   const [newProduct, setNewProduct] = useState(initialValueProduct);
+
   const [creatingProductState, setCreatingProductState] = useState('minimizado');
 
-  let history = useHistory();
+  const { productos, fecha, valor, nombreCliente, idCliente, idVendedor } = sale;
 
   const onValueChange = (e) => {
       setSale({ ...sale, [e.target.name]: e.target.value });
   }
 
   const onValueNewProductChange = (e) => {
-    setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
-  
+      if (e.target.name === "_id") {
+          let product = products.find(product => product._id === e.target.value)
+          let newProductCopy = newProduct;
+          newProductCopy.descripcion = product.descripcion;
+          setNewProduct(newProductCopy);
+      }
+      setNewProduct({ ...newProduct, [e.target.name]: e.target.value });
+
+
   }
+
+  const loadProductsData = async () => {
+      let response = await getProducts();
+      setProducts(response.data.data);
+  }
+
   const addProduct = (newProduct) => {
-        let productsCopy = productos
-        productsCopy.push(newProduct)
-        setSale({ ...sale, productos: productsCopy });
-        setNewProduct(initialValueProduct);
-        changeStateCreateProductForm('minimizado');
-    }
+      let productsCopy = productos
+      productsCopy.push(newProduct)
+      setSale({ ...sale, productos: productsCopy });
+      setNewProduct(initialValueProduct);
+      changeStateCreateProductForm('minimizado');
+  }
+
   const addSaleData = async () => {
-    await addSale(sale);
-    history.push('/ventas');
+      let response = await addSale(sale);
+      if (response.status === 201) {
+          history.push('/ventas');
+      }
   }
-  
-  const changeStateCreateProductForm = (state) => {
-    setCreatingProductState(state);
-  }
-  
+
   const deleteProduct = (id) => {
-    let productsCopy = productos.filter(product => product._id !== id);
-    setSale({ ...sale, productos: productsCopy });
-}
+      let productsCopy = productos.filter(product => product._id !== id);
+      setSale({ ...sale, productos: productsCopy });
+  }
+
+  const changeStateCreateProductForm = (state) => {
+      setCreatingProductState(state);
+  }
   return (
     <div className="card mr-5">
       <form>
@@ -78,14 +102,10 @@ function SaleForm() {
             <input className="form-control" onChange={(e) => onValueChange(e)} name="valor" value={valor} id="my-input"  />
           </div>
         </div>
-      </form>
-      <div class="form-group row mr-0">
-          <label className="col-sm-2 col-form-label">Productos</label>
-          <div className="col-sm-10">
-            <input className="form-control" onChange={(e) => onValueChange(e)} name="producto" value={productos} id="my-input"  />
-          </div>
-        </div>
-      <table>
+      </form>     
+      <label className> Productos</label>
+      <table className="table mb-5">
+        
         <thead>
             <tr>
               <th>
@@ -116,10 +136,10 @@ function SaleForm() {
               </th>
               <th>
               { creatingProductState === 'minimizado' && (
-                                <button variant="contained" onClick={() => changeStateCreateProductForm('desplegado')} >Agregar</button>
+                                <button type="button" class="btn btn-success" onClick={() => changeStateCreateProductForm('desplegado') } >Agregar</button>
                             )}
                             { creatingProductState === 'desplegado' && (
-                                <button variant="contained" onClick={() => addProduct(newProduct)  } >+</button>
+                                <button  type="button" class="btn btn-success" onClick={() => addProduct(newProduct)  } >+</button>
                             )}
               </th>
             </tr>
@@ -129,10 +149,9 @@ function SaleForm() {
                               sale.productos.map(product => (
                                   <tr key={product._id}>
                                       <td>{product._id}</td>
-                                      <td>{product.valor}</td>
                                       <td>{product.cantidad}</td>
                                       <td>
-                                          <button variant="contained" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
+                                          <button type="button" class="btn btn-danger" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
                                       </td>
                                   </tr>
                               ))
