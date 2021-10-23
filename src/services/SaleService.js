@@ -5,10 +5,8 @@ import { authHeaders } from "./AuthService";
 const salesUrl = "http://localhost:3002/ventas"; //dllo
 
 export const getSale = async (id) => {
-    //return await axios.get(`${salesUrl}/${id}`, { headers: authHeaders });
     return await axios.get(`${salesUrl}/${id}`, { headers: authHeaders });
 }
-
 export const getSales = async () => {
     return await axios.get(`${salesUrl}/`);
 }

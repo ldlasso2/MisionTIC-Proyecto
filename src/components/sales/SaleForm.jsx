@@ -12,9 +12,10 @@ const initialValue = {
 }
 const initialValueProduct = {
   _id: '',
+  valor: 0,
+  descripcion: '',
   cantidad: 0
 }
-
 function SaleForm() {
 
   const history = useHistory();
@@ -30,7 +31,7 @@ function SaleForm() {
 
   const [creatingProductState, setCreatingProductState] = useState('minimizado');
 
-  const { productos, fecha, valor, nombreCliente, idCliente, idVendedor } = sale;
+  const { productos, valor, nombreCliente, idCliente, idVendedor } = sale;
 
   const onValueChange = (e) => {
       setSale({ ...sale, [e.target.name]: e.target.value });
@@ -126,48 +127,61 @@ function SaleForm() {
                     )
                 }
               </th>
-
               <th>
-                Cantidad {creatingProductState === 'desplegado' &&
-                                      (
-                                          <>
-                                              :<input
-                                                  onChange={(e) => onValueNewProductChange(e)}
-                                                  value={newProduct.cantidad}
-                                                  type="text" 
-                                                  name="cantidad"/>
-                                          </>
-                                      )
-                                  }
+              Valor {creatingProductState === 'desplegado' &&
+                                    (
+                                        <>
+                                            :<input
+                                                onChange={(e) => onValueNewProductChange(e)}
+                                                value={newProduct.valor}
+                                                type="text"
+                                                name="valor" />
+                                        </>
+                                    )
+                                }
               </th>
               <th>
-                Descripción {creatingProductState === 'desplegado' &&
+                Cantidad: {creatingProductState === 'desplegado' &&
+                            (
+                                <>
+                                    :<input
+                                        onChange={(e) => onValueNewProductChange(e)}
+                                        value={newProduct.cantidad}
+                                        type="text"
+                                        name="cantidad" />
+                                </>
+                            )
+                        }
+              </th>
+              <th>
+                Descripcion {creatingProductState === 'desplegado' &&
                                     (<>: {newProduct.descripcion}</>)
                                 }
               </th>
               <th>
-              { creatingProductState === 'minimizado' && (
-                                <button type="button" class="btn btn-success" onClick={() => changeStateCreateProductForm('desplegado') } >Agregar</button>
-                            )}
-                            { creatingProductState === 'desplegado' && (
-                                <button  type="button" class="btn btn-success" onClick={() => addProduct(newProduct)  } >+</button>
-                            )}
+                {creatingProductState === 'minimizado' && (
+                                    <button variant="contained" class=" btn btn-primary" onClick={() => changeStateCreateProductForm('desplegado')} >Agregar</button>
+                                )}
+                                {creatingProductState === 'desplegado' && (
+                                    <button variant="contained" onClick={() => addProduct(newProduct)} >+</button>
+                                )}
               </th>
             </tr>
         </thead>
         <tbody>
-        {
-          sale.productos.map(product => (
-              <tr key={product._id}>
-                  <td>{product._id}</td>
-                  <td>{product.cantidad}</td>
-                  <td>{product.descripcion}</td>
-                  <td>
-                      <button variant="contained" class="btn btn-warning" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
-                  </td>
-              </tr>
-          ))
-        }
+          {
+            sale.productos.map(product => (
+                <tr key={product._id}>
+                    <td>{product._id}</td>
+                    <td>{product.valor}</td>
+                    <td>{product.cantidad}</td>
+                    <td>{product.descripcion}</td>
+                    <td>
+                        <button variant="contained" class="btn btn-warning" color="secondary" onClick={() => deleteProduct(product._id)} >X</button>
+                    </td>
+                </tr>
+            ))
+          }
         </tbody>
       </table>
         
