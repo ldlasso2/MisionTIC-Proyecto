@@ -19,7 +19,6 @@ const initialValueProduct = {
 function SaleForm() {
 
   const history = useHistory();
-  const [user, setUser] = useState(null)
 
   useEffect(() => {
       loadProductsData();
@@ -163,7 +162,7 @@ function SaleForm() {
                                     <button variant="contained" class=" btn btn-primary" onClick={() => changeStateCreateProductForm('desplegado')} >Agregar</button>
                                 )}
                                 {creatingProductState === 'desplegado' && (
-                                    <button variant="contained" onClick={() => addProduct(newProduct)} >+</button>
+                                    <button variant="contained"class=" btn btn-primary" onClick={() => addProduct(newProduct)} >+</button>
                                 )}
               </th>
             </tr>

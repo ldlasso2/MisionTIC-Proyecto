@@ -6,3 +6,7 @@ const usersUrl = "https://aqueous-thicket-88603.herokuapp.com/usuarios"; //prod
 export const createUser = async (user) => {
     return await axios.post(`${usersUrl}/`, user);
 }
+
+export const getUsers = async () => {
+    return await axios.get(`${usersUrl}/`);
+}

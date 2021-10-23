@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { getSales, deleteSale } from '../../services/SaleService';
 import { Link } from 'react-router-dom';
-//import { getCurrentUser } from '../services/AuthService';
 
 function SaleTable() {
-    const [user, setUser] = useState([])
+
     const [sales, setSales] = useState([])
   
     useEffect(() => {
       getAllProducts();
-      //setUser(getCurrentUser());
     }, [])
     const getAllProducts = async () => {
       let response = await getSales();
@@ -46,19 +44,13 @@ function SaleTable() {
                     <td>{sale._id}</td>
                     <td>{sale.valor}</td>
                     <td>{sale.nombreCliente}</td>
-                    <td>{sale.idVendedor}</td>
-                    
-                    {user
-                                    &&
-
-                                    (<td>
-                                      <Link className = "btn btn-success mr-2" to = {`/ventas/editar/${sale._id}`}>Editar </Link> 
-                                      <button className="btn btn-warning" onClick={() => deleteProductData(sale._id)} >Eliminar</button>
-                                    </td>)
-                                }
-                  </tr>
-  
-                ))
+                  <td>{sale.idVendedor}</td>
+                    <td>
+                      <Link className = "btn btn-success mr-2" to = {`/ventas/editar/${sale._id}`}>Editar </Link> 
+                      <button className="btn btn-warning" onClick={() => deleteProductData(sale._id)} >Eliminar</button>
+                    </td>
+                       
+                  </tr> ))
               }
 
           </tbody>

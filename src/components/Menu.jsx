@@ -16,12 +16,6 @@ function Menu(props) {
             Registrar {props.objetos}
           </Link>
         </li>
-
-        <li class="list-group-item list-group-item-action">
-          <Link to= {"/"+ props.objetos + '/buscar'}>
-            Buscar {props.objetos}
-          </Link>
-        </li>
       </ul>
     </div>
   )

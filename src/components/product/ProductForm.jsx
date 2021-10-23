@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { addProduct } from '../../services/ProductService';
 import { useHistory } from 'react-router-dom';
 import { RadioGroup,FormControlLabel,Radio  } from '@material-ui/core';
-//import { getCurrentUser } from '../services/AuthService';
-//import { verifyToken } from '../services/AuthService';
 
 const initialValue = {
   valor: '',
